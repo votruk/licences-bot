@@ -1,6 +1,6 @@
 [
  {
-   "Licence": "Academic Free License v3.0",
+   "Academic Free License v3.0":"Title",
    "Academic Free License v3.0": "yes",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -31,7 +31,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "GNU Affero General Public License v3.0",
+   "GNU Affero General Public License v3.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "yes",
    "Apache License 2.0": "",
@@ -62,7 +62,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Apache License 2.0",
+   "Apache License 2.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "yes",
@@ -93,7 +93,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Artistic License 2.0",
+   "Artistic License 2.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -124,7 +124,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "BSD 2-clause \"Simplified\" License",
+   "BSD 2-clause \"Simplified\" License": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -155,7 +155,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "BSD 3-clause Clear License",
+   "BSD 3-clause Clear License": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -186,7 +186,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "BSD 3-clause \"New\" or \"Revised\" License",
+   "BSD 3-clause \"New\" or \"Revised\" License": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -217,7 +217,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Boost Software License 1.0",
+   "Boost Software License 1.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -248,7 +248,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Creative Commons Attribution 4.0",
+   "Creative Commons Attribution 4.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -279,7 +279,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Creative Commons Attribution Share Alike 4.0",
+   "Creative Commons Attribution Share Alike 4.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -310,7 +310,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Creative Commons Zero v1.0 Universal",
+   "Creative Commons Zero v1.0 Universal": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -341,7 +341,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Eclipse Public License 1.0",
+   "Eclipse Public License 1.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -372,7 +372,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "European Union Public License 1.1",
+   "European Union Public License 1.1": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -403,7 +403,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "GNU General Public License v2.0",
+   "GNU General Public License v2.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -434,7 +434,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "GNU General Public License v3.0",
+   "GNU General Public License v3.0": "Title",
    "Academic Free License v3.0": "no",
    "GNU Affero General Public License v3.0": "yes",
    "Apache License 2.0": "yes",
@@ -465,7 +465,7 @@
    "zlib License": "yes"
  },
  {
-   "Licence": "ISC License",
+   "ISC License": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -496,7 +496,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "GNU Lesser General Public License v2.1",
+   "GNU Lesser General Public License v2.1": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -527,7 +527,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "GNU Lesser General Public License v3.0",
+   "GNU Lesser General Public License v3.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -558,7 +558,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "LaTeX Project Public License v1.3c",
+   "LaTeX Project Public License v1.3c": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -589,7 +589,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "MIT License",
+   "MIT License": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -620,7 +620,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Mozilla Public License 2.0",
+   "Mozilla Public License 2.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -651,7 +651,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Microsoft Public License",
+   "Microsoft Public License": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -682,7 +682,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Microsoft Reciprocal License",
+   "Microsoft Reciprocal License": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -713,7 +713,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "SIL Open Font License 1.1",
+   "SIL Open Font License 1.1": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -744,7 +744,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Open Software License 3.0",
+   "Open Software License 3.0": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -775,7 +775,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "The Unlicense",
+   "The Unlicense": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -806,7 +806,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "Do What The F*ck You Want To Public License",
+   "Do What The F*ck You Want To Public License": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",
@@ -837,7 +837,7 @@
    "zlib License": ""
  },
  {
-   "Licence": "zlib License",
+   "zlib License": "Title",
    "Academic Free License v3.0": "",
    "GNU Affero General Public License v3.0": "",
    "Apache License 2.0": "",

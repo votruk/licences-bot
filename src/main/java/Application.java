@@ -12,13 +12,13 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.request.SendMessage;
-import com.sun.istack.internal.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Created by kurt on 23/01/2017.
@@ -26,10 +26,14 @@ import java.util.Map;
 public class Application {
 
     public static final String BACK_TO_START = "BACK_TO_START";
+    private static final String LICENCE_PREFIX = "/L_";
+    public static final String COMPATABILITY_PREFIX = "/C_";
+    public static final String FINAL_COMPAT_PREFIX = "/CC_";
+    public static final String compatPattern = "(" + FINAL_COMPAT_PREFIX + ")(\\d\\d)_(\\d\\d)";
 
     public static void main(final String[] args) throws FileNotFoundException {
         final Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader("src/main/resources/licence.json"));
+        JsonReader reader = new JsonReader(new FileReader("src/main/resources/licences2.json"));
 
         final List<LicenceRelation> licenceRelations = gson.fromJson(reader, new TypeToken<List<LicenceRelation>>() {
         }.getType());
@@ -48,6 +52,12 @@ public class Application {
                             Help.doOnHelp(bot, message);
                         } else if (message.text().equals("/start")) {
                             Start.doOnStart(bot, update.message(), true);
+                        } else if (message.text().startsWith(LICENCE_PREFIX)) {
+                            sendLicenceInfo(message, licenceRelations, bot);
+                        } else if (message.text().startsWith(COMPATABILITY_PREFIX)) {
+                            sendCompatabilityInfo(message, licenceRelations, bot);
+                        } else if (message.text().matches(compatPattern)) {
+                            respondToCompat(message, licenceRelations, bot);
                         } else {
                             final SendMessage newRequest = new SendMessage(update.message().chat().id(), "I received your message: "
                                     + update.message().text())
@@ -59,13 +69,13 @@ public class Application {
                     } else if (update.chosenInlineResult() != null) {
                         System.out.printf(update.chosenInlineResult().toString());
                     } else if (callbackQuery != null) {
-                        if (callbackQuery.data().equals(Start.COMPARE_CALLBACK_DATA)) {
+                        if (callbackQuery.data().equals(Start.GET_LICENCES_INFO)) {
                             InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
                                     new InlineKeyboardButton[]{
                                             new InlineKeyboardButton("Back to start").callbackData(BACK_TO_START)
                                     });
                             EditMessageText editMessageText = new EditMessageText(callbackQuery.message().chat().id(),
-                                    callbackQuery.message().messageId(), getFirstLicencesText(onlyLicence))
+                                    callbackQuery.message().messageId(), getFirstLicencesText(LICENCE_PREFIX, licenceRelations))
                                     .parseMode(ParseMode.HTML)
                                     .disableWebPagePreview(true)
                                     .replyMarkup(inlineKeyboard);
@@ -82,20 +92,110 @@ public class Application {
         });
     }
 
-    @NotNull
-    private static String getFirstLicencesText(@NotNull final LicenceRelation onlyLicence) {
-        return "Choose first licence:\n\n/Licence_1 " + onlyLicence.getName().getTitle();
+    private static void respondToCompat(final Message message,
+                                        final List<LicenceRelation> licenceRelations,
+                                        final TelegramBot bot) {
+        final String text = message.text();
+        final int firstNumber = Integer.valueOf(
+                text.replace(FINAL_COMPAT_PREFIX, "").substring(0, 2));
+        final int secondNumber = Integer.valueOf(
+                text.substring(text.length() - 2, text.length()));
+        final LicenceRelation firstLicence = licenceRelations.get(firstNumber);
+        final Licence secondLicence = licenceRelations.get(secondNumber).getTitle();
+        final Relation relation = firstLicence.getRelations().get(secondLicence);
+        final String sendingText = "Is licence\n\"" + firstLicence.getTitle().getName()
+                + "\"\ncompatable with licence\n\"" + secondLicence.getName() + "\"?\n\n"
+                + relation.name();
+        final SendMessage newRequest = new SendMessage(message.chat().id(), sendingText)
+                .parseMode(ParseMode.HTML)
+                .disableWebPagePreview(true)
+                .disableNotification(true);
+        bot.execute(newRequest);
     }
 
-    @NotNull
-    private static String getSecondLicences(@NotNull final LinkedHashMap<Licence, Relation> licenceRelationHashMap,
-                                            final int itemsOnPage,
-                                            final int page) {
+    private static void sendLicenceInfo(final Message message,
+                                        final List<LicenceRelation> licenceRelations,
+                                        final TelegramBot bot) {
+        final String licenceNumber = message.text().replace(LICENCE_PREFIX, "");
+        final String text = getText(licenceRelations, licenceNumber, new Func1<Integer, String>() {
+            @Override
+            public String call(Integer number) {
+                return getLicenceFullInfo(licenceRelations.get(number), number);
+            }
+        });
+        final SendMessage newRequest = new SendMessage(message.chat().id(), text)
+                .parseMode(ParseMode.HTML)
+                .disableWebPagePreview(true)
+                .disableNotification(true);
+        bot.execute(newRequest);
+    }
+
+    private static String getText(final List<LicenceRelation> licenceRelations,
+                                  final String licenceNumber,
+                                  final Func1<Integer, String> func) {
+        String text;
+        if (licenceNumber.matches("[0-9]+")) {
+            final int number = Integer.valueOf(licenceNumber);
+            if (number >= licenceRelations.size()) {
+                text = "Unknown licence with number: " + number;
+            } else {
+                text = func.call(number);
+            }
+        } else {
+            text = "Unknown licence with number: " + licenceNumber;
+        }
+        return text;
+    }
+
+    private static void sendCompatabilityInfo(final Message message,
+                                              final List<LicenceRelation> licenceRelations,
+                                              final TelegramBot bot) {
+        String licenceNumber = message.text().replace(COMPATABILITY_PREFIX, "");
+        final String text = getText(licenceRelations, licenceNumber, new Func1<Integer, String>() {
+            @Override
+            public String call(Integer number) {
+                return getLicenceWithCompatability(licenceRelations, licenceRelations.get(number), number);
+            }
+        });
+        final SendMessage newRequest = new SendMessage(message.chat().id(), text)
+                .parseMode(ParseMode.HTML)
+                .disableWebPagePreview(true)
+                .disableNotification(true);
+        bot.execute(newRequest);
+    }
+
+    private static String getLicenceFullInfo(final LicenceRelation licenceRelation, final int number) {
+        return licenceRelation.getTitle().getName() + "\n\n" + "Some description text.\n\n" +
+                "You can check compatibility with other licences by pressing following link: "
+                + COMPATABILITY_PREFIX + getFullNumber(number);
+    }
+
+    private static String getLicenceWithCompatability(final List<LicenceRelation> licenceRelations,
+                                                      final LicenceRelation chosenLicence,
+                                                      final int number) {
+        return chosenLicence.getTitle().getName() + "\n\n" + "Choose one of the following licences to know either " +
+                "these licences compatible or not\n" +
+                getFirstLicencesText(FINAL_COMPAT_PREFIX + getFullNumber(number) + "_", licenceRelations);
+    }
+
+    private static String getFirstLicencesText(final String prefix, final List<LicenceRelation> licences) {
+        String text = "Choose first licence:\n\n";
+        for (int i = 0; i < licences.size(); i++) {
+            text = text + prefix + getFullNumber(i) + "  " + licences.get(i).getTitle().getName() + "\n";
+        }
+        return text;
+    }
+
+    private static String getFullNumber(int i) {
+        return i < 10 ? ("0" + i) : ("" + i);
+    }
+
+    private static String getSecondLicences(final LinkedHashMap<Licence, Relation> licenceRelationHashMap) {
         //TODO add paging later
         String text = "Choose second licence:\n\n/";
         int count = 1;
         for (Map.Entry<Licence, Relation> entry : licenceRelationHashMap.entrySet()) {
-            text = text + "/Licence_" + count + " " + entry.getKey();
+            text = text + LICENCE_PREFIX + count + " " + entry.getKey();
             count++;
         }
         return text;

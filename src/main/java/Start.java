@@ -5,19 +5,18 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.request.SendMessage;
-import com.sun.istack.internal.NotNull;
 
 /**
  * Created by kurt on 24/01/2017.
  */
 public class Start {
 
-    public static final String COMPARE_CALLBACK_DATA = "COMPARE_CALLBACK_DATA";
+    public static final String GET_LICENCES_INFO = "GET_LICENCES_INFO";
 
-    public static void doOnStart(@NotNull final TelegramBot bot, @NotNull final Message message, final boolean newMessage) {
+    public static void doOnStart(final TelegramBot bot, final Message message, final boolean newMessage) {
         InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
                 new InlineKeyboardButton[]{
-                        new InlineKeyboardButton("Compare Licences").callbackData(COMPARE_CALLBACK_DATA)
+                        new InlineKeyboardButton("Get licences info").callbackData(GET_LICENCES_INFO)
                 });
         if (newMessage) {
             SendMessage request = new SendMessage(message.chat().id(), "Choose what you want to do").replyMarkup(inlineKeyboard);

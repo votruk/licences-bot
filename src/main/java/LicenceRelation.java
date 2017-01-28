@@ -1,6 +1,6 @@
 import com.google.gson.annotations.SerializedName;
-import com.sun.istack.internal.NotNull;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
@@ -8,19 +8,15 @@ import java.util.LinkedHashMap;
  */
 public class LicenceRelation {
 
-    @NotNull
-    @SerializedName("name")
-    private Licence name;
-    @NotNull
+    @SerializedName("title")
+    private Licence title;
     @SerializedName("fields")
     private LinkedHashMap<Licence, Relation> relations;
 
-    @NotNull
-    public Licence getName() {
-        return name;
+    public Licence getTitle() {
+        return title;
     }
 
-    @NotNull
     public LinkedHashMap<Licence, Relation> getRelations() {
         return relations;
     }

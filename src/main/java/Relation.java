@@ -9,6 +9,8 @@ public enum Relation {
     YES,
     @SerializedName("no")
     NO,
+    @SerializedName("Title")
+    TITLE,
     @SerializedName("")
     UNDEFINED
 
