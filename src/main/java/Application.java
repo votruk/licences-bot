@@ -4,9 +4,7 @@ import com.google.gson.stream.JsonReader;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.TelegramBotAdapter;
 import com.pengrad.telegrambot.UpdatesListener;
-import com.pengrad.telegrambot.model.CallbackQuery;
-import com.pengrad.telegrambot.model.Message;
-import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.model.*;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ParseMode;
@@ -62,6 +60,7 @@ public class Application {
                     final Message message = update.message();
                     final CallbackQuery callbackQuery = update.callbackQuery();
                     if (message != null && !message.text().isEmpty()) {
+                        logMessage(message, message.from());
                         if (message.text().equals("/help")) {
                             Help.doOnHelp(bot, message);
                         } else if (message.text().equals("/start")) {
@@ -81,8 +80,9 @@ public class Application {
                             bot.execute(newRequest);
                         }
                     } else if (update.chosenInlineResult() != null) {
-                        System.out.printf(update.chosenInlineResult().toString());
+                        System.out.println(update.chosenInlineResult().toString());
                     } else if (callbackQuery != null) {
+                        logCallbackQuery(callbackQuery, callbackQuery.from());
                         if (callbackQuery.data().equals(Start.GET_LICENCES_INFO)) {
                             InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
                                     new InlineKeyboardButton[]{
@@ -104,6 +104,18 @@ public class Application {
                 return CONFIRMED_UPDATES_ALL;
             }
         });
+    }
+
+    private static void logMessage(final Message message, final User user) {
+        System.out.println("Got message: \"" + message.text() + "\"" + getName(user));
+    }
+
+    private static void logCallbackQuery(final CallbackQuery callbackQuery, final User user) {
+        System.out.println("Got callbackQuery: \"" + callbackQuery.data() + "\"" + getName(user));
+    }
+
+    private static String getName(final User user) {
+        return " from " + user.firstName() + " " + user.lastName() + " (" + user.username() + ")";
     }
 
     private static void respondToCompat(final Message message,
