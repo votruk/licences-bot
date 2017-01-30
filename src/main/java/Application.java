@@ -4,7 +4,10 @@ import com.google.gson.stream.JsonReader;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.TelegramBotAdapter;
 import com.pengrad.telegrambot.UpdatesListener;
-import com.pengrad.telegrambot.model.*;
+import com.pengrad.telegrambot.model.CallbackQuery;
+import com.pengrad.telegrambot.model.Message;
+import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.model.User;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ParseMode;
@@ -14,9 +17,8 @@ import com.pengrad.telegrambot.request.SendMessage;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by kurt on 23/01/2017.
@@ -29,27 +31,14 @@ public class Application {
     public static final String FINAL_COMPAT_PREFIX = "/CC_";
     public static final String compatPattern = "(" + FINAL_COMPAT_PREFIX + ")(\\d\\d)_(\\d\\d)";
 
+    private static SimpleDateFormat DATE_FORMAT
+            = new SimpleDateFormat("HH:mm:ss dd.MM.YYYY", Locale.forLanguageTag("ru"));
+
     public static void main(final String[] args) throws FileNotFoundException {
         final Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader("src/main/resources/licences3.json"));
 
-        final List<LicenceRelation> licenceRelations = gson.fromJson(reader, new TypeToken<List<LicenceRelation>>() {
-        }.getType());
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        JsonReader reader2 = new JsonReader(new FileReader("src/main/resources/licences_main_updated.json"));
-        final List<LicenceInfo> licenceInfos = gson.fromJson(reader2, new TypeToken<List<LicenceInfo>>() {
-        }.getType());
-        try {
-            reader2.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        final List<LicenceRelation> licenceRelations = parseListOfItems(gson, "licences3.json");
+        final List<LicenceInfo> licenceInfos = parseListOfItems(gson, "licences_main_updated.json");
 
         final TelegramBot bot = TelegramBotAdapter.build("271082119:AAHGdwihF-2qEwSvdjt48FSywunyDrYEBGU");
         bot.setUpdatesListener(new UpdatesListener() {
@@ -106,12 +95,24 @@ public class Application {
         });
     }
 
+    private static <T> List<T> parseListOfItems(final Gson gson, final String fileName) throws FileNotFoundException {
+        JsonReader reader2 = new JsonReader(new FileReader("src/main/resources/" + fileName));
+        final List<T> licenceInfos = gson.fromJson(reader2, new TypeToken<List<T>>() {
+        }.getType());
+        try {
+            reader2.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return licenceInfos;
+    }
+
     private static void logMessage(final Message message, final User user) {
-        System.out.println("Got message: \"" + message.text() + "\"" + getName(user));
+        System.out.println(DATE_FORMAT.format(new Date()) + " Got message: \"" + message.text() + "\"" + getName(user));
     }
 
     private static void logCallbackQuery(final CallbackQuery callbackQuery, final User user) {
-        System.out.println("Got callbackQuery: \"" + callbackQuery.data() + "\"" + getName(user));
+        System.out.println(DATE_FORMAT.format(new Date()) + " Got callbackQuery: \"" + callbackQuery.data() + "\"" + getName(user));
     }
 
     private static String getName(final User user) {
