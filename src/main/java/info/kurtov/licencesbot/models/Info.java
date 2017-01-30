@@ -1,4 +1,7 @@
+package info.kurtov.licencesbot.models;
+
 import com.google.gson.annotations.SerializedName;
+import com.sun.istack.internal.NotNull;
 
 /**
  * Created by kurt on 30/01/2017.
@@ -32,12 +35,14 @@ public enum Info {
     @SerializedName("Warranty")
     WARRANTY("Warranty");
 
+    @NotNull
     private final String name;
 
-    Info(String name) {
+    Info(@NotNull final String name) {
         this.name = name;
     }
 
+    @NotNull
     public String getName() {
         return name;
     }
