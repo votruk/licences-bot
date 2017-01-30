@@ -12,6 +12,7 @@ import info.kurtov.licencesbot.utils.DataProvider;
 import info.kurtov.licencesbot.utils.LogUtils;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -19,11 +20,9 @@ import java.util.List;
  */
 public class Application {
 
-    public static void main(final String[] args) throws FileNotFoundException {
+    public static void main(final String[] args) throws IOException {
 
-        DataProvider.initialize();
-
-        final TelegramBot bot = TelegramBotAdapter.build("271082119:AAHGdwihF-2qEwSvdjt48FSywunyDrYEBGU");
+        final TelegramBot bot = TelegramBotAdapter.build(DataProvider.initializeAndGetToken());
         bot.setUpdatesListener(new UpdatesListener() {
             @Override
             public int process(final List<Update> updates) {
