@@ -1,0 +1,506 @@
+[
+  {
+    "licence": "Academic Free License v3.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "GNU Affero General Public License v3.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "yes",
+      "Same License": "yes",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Apache License 2.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Artistic License 2.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "BSD 2-clause \"Simplified\" License",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "BSD 3-clause Clear License",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "no",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "BSD 3-clause \"New\" or \"Revised\" License",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Boost Software License 1.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Creative Commons Attribution 4.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "no",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Creative Commons Attribution Share Alike 4.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "no",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Creative Commons Zero v1.0 Universal",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "no",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "ng",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Eclipse Public License 1.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "European Union Public License 1.1",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "yes",
+      "Same License": "yes",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "GNU General Public License v2.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "GNU General Public License v3.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "ISC License",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "GNU Lesser General Public License v2.1",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "GNU Lesser General Public License v3.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "LaTeX Project Public License v1.3c",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "MIT License",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Mozilla Public License 2.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Microsoft Public License",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "ng",
+      "Liability": "ng",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Microsoft Reciprocal License",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "ng",
+      "Liability": "ng",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "SIL Open Font License 1.1",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "yes",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Open Software License 3.0",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "yes",
+      "Private Use": "yes",
+      "Disclose Source": "yes",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "yes",
+      "Same License": "yes",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "yes",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "The Unlicense",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "ng",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "ng",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  },
+  {
+    "licence": "Do What The F*ck You Want To Public License",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "ng",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "ng",
+      "Liability": "ng",
+      "Trademark Use": "ng",
+      "Warranty": "ng"
+    }
+  },
+  {
+    "licence": "zlib License",
+    "fields": {
+      "Commercial Use": "yes",
+      "Distribution": "yes",
+      "Modification": "yes",
+      "Patent Use": "ng",
+      "Private Use": "yes",
+      "Disclose Source": "ng",
+      "License and Copyright Notice": "yes",
+      "Network Use is Distribution": "ng",
+      "Same License": "ng",
+      "State Changes": "yes",
+      "Liability": "yes",
+      "Trademark Use": "ng",
+      "Warranty": "yes"
+    }
+  }
+]

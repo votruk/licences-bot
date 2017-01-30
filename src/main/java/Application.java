@@ -15,10 +15,10 @@ import com.pengrad.telegrambot.request.SendMessage;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 /**
  * Created by kurt on 23/01/2017.
@@ -33,11 +33,25 @@ public class Application {
 
     public static void main(final String[] args) throws FileNotFoundException {
         final Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader("src/main/resources/licences2.json"));
+        JsonReader reader = new JsonReader(new FileReader("src/main/resources/licences3.json"));
 
         final List<LicenceRelation> licenceRelations = gson.fromJson(reader, new TypeToken<List<LicenceRelation>>() {
         }.getType());
-        final LicenceRelation onlyLicence = licenceRelations.get(0);
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        JsonReader reader2 = new JsonReader(new FileReader("src/main/resources/licences_main_updated.json"));
+        final List<LicenceInfo> licenceInfos = gson.fromJson(reader2, new TypeToken<List<LicenceInfo>>() {
+        }.getType());
+        try {
+            reader2.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         final TelegramBot bot = TelegramBotAdapter.build("271082119:AAHGdwihF-2qEwSvdjt48FSywunyDrYEBGU");
         bot.setUpdatesListener(new UpdatesListener() {
@@ -53,7 +67,7 @@ public class Application {
                         } else if (message.text().equals("/start")) {
                             Start.doOnStart(bot, update.message(), true);
                         } else if (message.text().startsWith(LICENCE_PREFIX)) {
-                            sendLicenceInfo(message, licenceRelations, bot);
+                            sendLicenceInfo(message, licenceRelations, licenceInfos, bot);
                         } else if (message.text().startsWith(COMPATABILITY_PREFIX)) {
                             sendCompatabilityInfo(message, licenceRelations, bot);
                         } else if (message.text().matches(compatPattern)) {
@@ -115,12 +129,13 @@ public class Application {
 
     private static void sendLicenceInfo(final Message message,
                                         final List<LicenceRelation> licenceRelations,
+                                        final List<LicenceInfo> licenceInfos,
                                         final TelegramBot bot) {
         final String licenceNumber = message.text().replace(LICENCE_PREFIX, "");
         final String text = getText(licenceRelations, licenceNumber, new Func1<Integer, String>() {
             @Override
             public String call(Integer number) {
-                return getLicenceFullInfo(licenceRelations.get(number), number);
+                return getLicenceFullInfo(licenceRelations.get(number), licenceInfos.get(number), number);
             }
         });
         final SendMessage newRequest = new SendMessage(message.chat().id(), text)
@@ -164,10 +179,20 @@ public class Application {
         bot.execute(newRequest);
     }
 
-    private static String getLicenceFullInfo(final LicenceRelation licenceRelation, final int number) {
-        return licenceRelation.getTitle().getName() + "\n\n" + "Some description text.\n\n" +
+    private static String getLicenceFullInfo(final LicenceRelation licenceRelation,
+                                             final LicenceInfo licenceInfo,
+                                             final int number) {
+        return licenceRelation.getTitle().getName() + "\n\n" + getLiceceInfos(licenceInfo) + "\n" +
                 "You can check compatibility with other licences by pressing following link: "
                 + COMPATABILITY_PREFIX + getFullNumber(number);
+    }
+
+    private static String getLiceceInfos(final LicenceInfo licenceInfo) {
+        String text = "";
+        for (final Info info : Info.values()) {
+            text = text + info.getName() + ": " + licenceInfo.getFields().get(info).name() + "\n";
+        }
+        return text;
     }
 
     private static String getLicenceWithCompatability(final List<LicenceRelation> licenceRelations,
