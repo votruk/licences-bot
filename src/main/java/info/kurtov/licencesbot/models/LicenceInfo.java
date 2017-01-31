@@ -1,4 +1,7 @@
+package info.kurtov.licencesbot.models;
+
 import com.google.gson.annotations.SerializedName;
+import com.sun.istack.internal.NotNull;
 
 import java.util.LinkedHashMap;
 
@@ -12,10 +15,12 @@ public class LicenceInfo {
     @SerializedName("fields")
     private LinkedHashMap<Info, Relation> fields;
 
+    @NotNull
     public Licence getLicence() {
         return licence;
     }
 
+    @NotNull
     public LinkedHashMap<Info, Relation> getFields() {
         return fields;
     }

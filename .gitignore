@@ -27,3 +27,4 @@ proguard/
 *.iml
 .idea
 .idea/
+/src/main/resources/bot-token

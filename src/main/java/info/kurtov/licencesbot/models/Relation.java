@@ -1,3 +1,5 @@
+package info.kurtov.licencesbot.models;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,8 +12,8 @@ public enum Relation {
     @SerializedName("no")
     NO,
     @SerializedName("ng")
-    NG,
+    NOT_GIVEN,
     @SerializedName("")
-    UNDEFINED
+    UNKNOWN
 
 }
