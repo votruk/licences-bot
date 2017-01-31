@@ -2,11 +2,11 @@ package info.kurtov.licencesbot.utils;
 
 import com.sun.istack.internal.NotNull;
 import info.kurtov.licencesbot.Constants;
+import info.kurtov.licencesbot.Func1;
 import info.kurtov.licencesbot.models.Info;
 import info.kurtov.licencesbot.models.InfoGroup;
 import info.kurtov.licencesbot.models.LicenceInfo;
 import info.kurtov.licencesbot.models.LicenceRelation;
-import rx.functions.Func1;
 
 import java.util.List;
 
@@ -16,8 +16,20 @@ import java.util.List;
 public class StringUtils {
 
     @NotNull
+    public static String getStartInfo() {
+        return "*Hi!*\n\nThere are several things that I can do for you." +
+                "\n\nFirst of all, I can bring you up-to-date about the most common open source license. " +
+                "To get information about license, type its name or the part of it and I\'ll search for suitable license." +
+                "\n\nIf you don\'t know what exactly you are looking for, click button \"*Get license info*\"" +
+                " and I\'ll send you a list of licenses that I am aware of. " +
+                "\n\nAnother thing that I can do for you is to check compatibility of licenses. " +
+                "To proceed this, choose a license, compatibility of which you want to check, " +
+                "then choose the second license and I\'ll send you the result of compatibility analysis.";
+    }
+
+    @NotNull
     public static String getInfosByGroup(@NotNull final InfoGroup infoGroup) {
-        String text = infoGroup.getTitle() + " (" + infoGroup.getDescription() + ")\n\n";
+        String text = "*" + infoGroup.getTitle() + "* (" + infoGroup.getDescription() + ")\n\n";
         for (final Info info : Info.values()) {
             if (info.getGroup() == infoGroup) {
                 text = text + info.getName() + " - " + info.getDescription() + "\n";
@@ -30,7 +42,7 @@ public class StringUtils {
     public static String getInfosGroups() {
         String text = "";
         for (final InfoGroup infoGroup : InfoGroup.values()) {
-            text = text + "/" + infoGroup.getTitle() + " - " + infoGroup.getDescription() + ".\n\n";
+            text = text + "/*" + infoGroup.getTitle() + "* - " + infoGroup.getDescription() + ".\n\n";
         }
         return text;
     }

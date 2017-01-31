@@ -11,7 +11,6 @@ import info.kurtov.licencesbot.processors.MessageProcesser;
 import info.kurtov.licencesbot.utils.DataProvider;
 import info.kurtov.licencesbot.utils.LogUtils;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 

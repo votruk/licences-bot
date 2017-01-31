@@ -2,8 +2,6 @@ package info.kurtov.licencesbot.models;
 
 import com.google.gson.annotations.SerializedName;
 import com.sun.istack.internal.NotNull;
-import info.kurtov.licencesbot.models.Licence;
-import info.kurtov.licencesbot.models.Relation;
 
 import java.util.LinkedHashMap;
 

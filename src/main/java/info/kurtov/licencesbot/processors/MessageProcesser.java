@@ -6,13 +6,13 @@ import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.sun.istack.internal.NotNull;
 import info.kurtov.licencesbot.Constants;
+import info.kurtov.licencesbot.Func1;
 import info.kurtov.licencesbot.models.InfoGroup;
 import info.kurtov.licencesbot.models.Licence;
 import info.kurtov.licencesbot.models.LicenceRelation;
 import info.kurtov.licencesbot.models.Relation;
 import info.kurtov.licencesbot.utils.DataProvider;
 import info.kurtov.licencesbot.utils.StringUtils;
-import rx.functions.Func1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class MessageProcesser {
                                  @NotNull final Message message,
                                  @NotNull final InfoGroup infoGroup) {
         bot.execute(new SendMessage(message.chat().id(), StringUtils.getInfosByGroup(infoGroup))
-                .parseMode(ParseMode.HTML)
+                .parseMode(ParseMode.Markdown)
                 .disableWebPagePreview(true)
                 .disableNotification(true));
     }
@@ -85,7 +85,7 @@ public class MessageProcesser {
                     + "\"\n\n" + StringUtils.getListOfLicences(Constants.LICENCE_PREFIX, selectedLicenceRelations);
         }
         final SendMessage newRequest = new SendMessage(message.chat().id(), text)
-                .parseMode(ParseMode.HTML)
+                .parseMode(ParseMode.Markdown)
                 .disableWebPagePreview(true)
                 .disableNotification(true);
         bot.execute(newRequest);
@@ -104,7 +104,7 @@ public class MessageProcesser {
                 + "\" compatible with licence \"" + secondLicence.getName() + "\"?\n\n"
                 + relation.name();
         bot.execute(new SendMessage(message.chat().id(), sendingText)
-                .parseMode(ParseMode.HTML)
+                .parseMode(ParseMode.Markdown)
                 .disableWebPagePreview(true)
                 .disableNotification(true));
     }
@@ -119,7 +119,7 @@ public class MessageProcesser {
             }
         });
         final SendMessage newRequest = new SendMessage(message.chat().id(), text)
-                .parseMode(ParseMode.HTML)
+                .parseMode(ParseMode.Markdown)
                 .disableWebPagePreview(true)
                 .disableNotification(true);
         bot.execute(newRequest);
@@ -135,7 +135,7 @@ public class MessageProcesser {
             }
         });
         final SendMessage newRequest = new SendMessage(message.chat().id(), text)
-                .parseMode(ParseMode.HTML)
+                .parseMode(ParseMode.Markdown)
                 .disableWebPagePreview(true)
                 .disableNotification(true);
         bot.execute(newRequest);

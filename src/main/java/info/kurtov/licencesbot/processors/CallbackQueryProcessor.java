@@ -26,7 +26,7 @@ public class CallbackQueryProcessor {
                     callbackQuery.message().messageId(), "Choose licence you want to know about by " +
                     "clicking on corresponding link:\n\n"
                     + StringUtils.getListOfLicences(Constants.LICENCE_PREFIX, DataProvider.getLicenceRelations()))
-                    .parseMode(ParseMode.HTML)
+                    .parseMode(ParseMode.Markdown)
                     .disableWebPagePreview(true)
                     .replyMarkup(inlineKeyboard);
             bot.execute(editMessageText);
@@ -38,7 +38,7 @@ public class CallbackQueryProcessor {
             final EditMessageText editMessageText = new EditMessageText(callbackQuery.message().chat().id(),
                     callbackQuery.message().messageId(), "There are three main groups:\n\n"
                     + StringUtils.getInfosGroups())
-                    .parseMode(ParseMode.HTML)
+                    .parseMode(ParseMode.Markdown)
                     .disableWebPagePreview(true)
                     .replyMarkup(inlineKeyboard);
             bot.execute(editMessageText);
