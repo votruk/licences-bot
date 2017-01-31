@@ -1,4 +1,4 @@
-package info.kurtov.licencesbot.processors;
+package info.kurtov.licencesbot.models;
 
 import com.google.gson.annotations.SerializedName;
 import com.sun.istack.internal.NotNull;

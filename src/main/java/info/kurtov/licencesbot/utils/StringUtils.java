@@ -3,8 +3,9 @@ package info.kurtov.licencesbot.utils;
 import com.sun.istack.internal.NotNull;
 import info.kurtov.licencesbot.Constants;
 import info.kurtov.licencesbot.models.Info;
+import info.kurtov.licencesbot.models.InfoGroup;
 import info.kurtov.licencesbot.models.LicenceInfo;
-import info.kurtov.licencesbot.processors.LicenceRelation;
+import info.kurtov.licencesbot.models.LicenceRelation;
 import rx.functions.Func1;
 
 import java.util.List;
@@ -13,6 +14,29 @@ import java.util.List;
  * Created by kurt on 31/01/2017.
  */
 public class StringUtils {
+
+    @NotNull
+    public static String getInfosByGroup(@NotNull final InfoGroup infoGroup) {
+        String text = infoGroup.getTitle()
+                + (infoGroup.getDescription() == null ? "" : " (" + infoGroup.getDescription() + ")")
+                + "\n\n";
+        for (final Info info : Info.values()) {
+            if (info.getGroup() == infoGroup) {
+                text = text + info.getName() + " - " + info.getDescription() + "\n";
+            }
+        }
+        return text;
+    }
+
+    @NotNull
+    public static String getInfosGroups() {
+        String text = "";
+        for (final InfoGroup infoGroup : InfoGroup.values()) {
+            text = text + "/" + infoGroup.getTitle()
+                    + (infoGroup.getDescription() == null ? "" : " - " + infoGroup.getDescription() + ".\n\n");
+        }
+        return text;
+    }
 
     @NotNull
     public static String getListOfLicences(@NotNull final String prefix, @NotNull final List<LicenceRelation> licences) {
@@ -34,8 +58,8 @@ public class StringUtils {
                                             @NotNull final LicenceInfo licenceInfo,
                                             @NotNull final int number) {
         return licenceRelation.getTitle().getName() + "\n\n" + getLicenceInfos(licenceInfo) + "\n" +
-                "You can check compatibility with other licences by pressing following link:\n"
-                + Constants.COMPATABILITY_PREFIX + StringUtils.getFullNumber(number);
+                "Check compatibility with other licences:\n"
+                + Constants.COMPATIBILITY_PREFIX + StringUtils.getFullNumber(number);
     }
 
 
@@ -58,7 +82,17 @@ public class StringUtils {
     @NotNull
     private static String getLicenceInfos(final LicenceInfo licenceInfo) {
         String text = "";
+        InfoGroup currentGroup = null;
         for (final Info info : Info.values()) {
+            if (currentGroup == null) {
+                currentGroup = info.getGroup();
+                text = text + currentGroup.getTitle() + "\n";
+            } else if (currentGroup != info.getGroup()) {
+                text = text + "\n";
+                currentGroup = info.getGroup();
+                text = text + currentGroup.getTitle() + "\n";
+
+            }
             text = text + info.getName() + ": " + licenceInfo.getFields().get(info).name() + "\n";
         }
         return text;

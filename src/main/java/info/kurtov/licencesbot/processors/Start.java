@@ -21,6 +21,9 @@ public class Start {
         final InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
                 new InlineKeyboardButton[]{
                         new InlineKeyboardButton("Get licences info").callbackData(Constants.GET_LICENCES_INFO)
+                },
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("More about licences").callbackData(Constants.GET_MORE_ABOUT)
                 });
         if (newMessage) {
             bot.execute(new SendMessage(message.chat().id(), "Choose what you want to do")

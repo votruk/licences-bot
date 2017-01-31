@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.sun.istack.internal.NotNull;
 import info.kurtov.licencesbot.models.LicenceInfo;
-import info.kurtov.licencesbot.processors.LicenceRelation;
+import info.kurtov.licencesbot.models.LicenceRelation;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -30,8 +30,7 @@ public class DataProvider {
         licenceRelations = parseLicenceRelations(gson);
         licenceInfos = parseLicenceInfos(gson);
 
-        final String token = parseBotToken(gson);
-        return token;
+        return parseBotToken();
     }
 
     @NotNull
@@ -44,12 +43,10 @@ public class DataProvider {
         return licenceInfos;
     }
 
-
     @NotNull
-    private static String parseBotToken(@NotNull final Gson gson) throws IOException {
+    private static String parseBotToken() throws IOException {
         return new String(Files.readAllBytes(Paths.get(PATH_TO_RESOURCES + "bot-token")));
     }
-
 
     @NotNull
     private static List<LicenceRelation> parseLicenceRelations(@NotNull final Gson gson) throws FileNotFoundException {
@@ -66,7 +63,7 @@ public class DataProvider {
 
     @NotNull
     private static List<LicenceInfo> parseLicenceInfos(@NotNull final Gson gson) throws FileNotFoundException {
-        JsonReader reader2 = new JsonReader(new FileReader(PATH_TO_RESOURCES + "licences_main_updated.json"));
+        JsonReader reader2 = new JsonReader(new FileReader(PATH_TO_RESOURCES + "licences_main_new.json"));
         final List<LicenceInfo> licenceInfos = gson.fromJson(reader2, new TypeToken<List<LicenceInfo>>() {
         }.getType());
         try {

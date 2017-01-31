@@ -6,7 +6,9 @@ import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.sun.istack.internal.NotNull;
 import info.kurtov.licencesbot.Constants;
+import info.kurtov.licencesbot.models.InfoGroup;
 import info.kurtov.licencesbot.models.Licence;
+import info.kurtov.licencesbot.models.LicenceRelation;
 import info.kurtov.licencesbot.models.Relation;
 import info.kurtov.licencesbot.utils.DataProvider;
 import info.kurtov.licencesbot.utils.StringUtils;
@@ -24,19 +26,35 @@ public class MessageProcesser {
     public static final String compatPattern = "(" + Constants.FINAL_COMPAT_PREFIX + ")(\\d\\d)_(\\d\\d)";
 
     public static void process(@NotNull final TelegramBot bot, @NotNull final Message message) {
-        if (message.text().equals("/help")) {
+        final String text = message.text();
+        if (text.equals("/help")) {
             Help.doOnHelp(bot, message);
-        } else if (message.text().equals("/start")) {
+        } else if (text.equals("/start")) {
             Start.doOnStart(bot, message, true);
-        } else if (message.text().startsWith(Constants.LICENCE_PREFIX)) {
+        } else if (text.startsWith(Constants.LICENCE_PREFIX)) {
             sendLicenceInfo(bot, message);
-        } else if (message.text().startsWith(Constants.COMPATABILITY_PREFIX)) {
+        } else if (text.startsWith(Constants.COMPATIBILITY_PREFIX)) {
             sendCompatabilityInfo(bot, message);
-        } else if (message.text().matches(compatPattern)) {
+        } else if (text.matches(compatPattern)) {
             respondToCompat(bot, message);
+        } else if (text.equals("/" + InfoGroup.PERMISSION.getTitle())) {
+            showInfo(bot, message, InfoGroup.PERMISSION);
+        } else if (text.equals("/" + InfoGroup.CONDITION.getTitle())) {
+            showInfo(bot, message, InfoGroup.CONDITION);
+        } else if (text.equals("/" + InfoGroup.LIMITATION.getTitle())) {
+            showInfo(bot, message, InfoGroup.LIMITATION);
         } else {
             searchForLicence(bot, message);
         }
+    }
+
+    private static void showInfo(@NotNull final TelegramBot bot,
+                                 @NotNull final Message message,
+                                 @NotNull final InfoGroup infoGroup) {
+        bot.execute(new SendMessage(message.chat().id(), StringUtils.getInfosByGroup(infoGroup))
+                .parseMode(ParseMode.HTML)
+                .disableWebPagePreview(true)
+                .disableNotification(true));
     }
 
     private static void searchForLicence(@NotNull final TelegramBot bot, @NotNull final Message message) {
@@ -82,21 +100,20 @@ public class MessageProcesser {
         final LicenceRelation firstLicence = DataProvider.getLicenceRelations().get(firstNumber);
         final Licence secondLicence = DataProvider.getLicenceRelations().get(secondNumber).getTitle();
         final Relation relation = firstLicence.getRelations().get(secondLicence);
-        final String sendingText = "Is licence\n\"" + firstLicence.getTitle().getName()
-                + "\"\ncompatable with licence\n\"" + secondLicence.getName() + "\"?\n\n"
+        final String sendingText = "Is licence \"" + firstLicence.getTitle().getName()
+                + "\" compatible with licence \"" + secondLicence.getName() + "\"?\n\n"
                 + relation.name();
-        final SendMessage newRequest = new SendMessage(message.chat().id(), sendingText)
+        bot.execute(new SendMessage(message.chat().id(), sendingText)
                 .parseMode(ParseMode.HTML)
                 .disableWebPagePreview(true)
-                .disableNotification(true);
-        bot.execute(newRequest);
+                .disableNotification(true));
     }
 
     private static void sendLicenceInfo(@NotNull final TelegramBot bot, @NotNull final Message message) {
         final String licenceNumber = message.text().replace(Constants.LICENCE_PREFIX, "");
         final String text = StringUtils.getText(DataProvider.getLicenceRelations(), licenceNumber, new Func1<Integer, String>() {
             @Override
-            public String call(Integer number) {
+            public String call(final Integer number) {
                 return StringUtils.getLicenceFullInfo(DataProvider.getLicenceRelations().get(number),
                         DataProvider.getLicenceInfos().get(number), number);
             }
@@ -109,10 +126,10 @@ public class MessageProcesser {
     }
 
     private static void sendCompatabilityInfo(@NotNull final TelegramBot bot, @NotNull final Message message) {
-        String licenceNumber = message.text().replace(Constants.COMPATABILITY_PREFIX, "");
+        String licenceNumber = message.text().replace(Constants.COMPATIBILITY_PREFIX, "");
         final String text = StringUtils.getText(DataProvider.getLicenceRelations(), licenceNumber, new Func1<Integer, String>() {
             @Override
-            public String call(Integer number) {
+            public String call(final Integer number) {
                 return StringUtils.getLicenceWithCompatability(DataProvider.getLicenceRelations(),
                         DataProvider.getLicenceRelations().get(number), number);
             }

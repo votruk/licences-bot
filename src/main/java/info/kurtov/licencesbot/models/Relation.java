@@ -12,8 +12,8 @@ public enum Relation {
     @SerializedName("no")
     NO,
     @SerializedName("ng")
-    NG,
+    NOT_GIVEN,
     @SerializedName("")
-    UNDEFINED
+    UNKNOWN
 
 }
