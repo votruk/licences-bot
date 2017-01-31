@@ -2,7 +2,10 @@ package info.kurtov.licencesbot.processors;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ParseMode;
+import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.sun.istack.internal.NotNull;
 import info.kurtov.licencesbot.Constants;
@@ -21,16 +24,14 @@ import java.util.Locale;
 /**
  * Created by kurt on 31/01/2017.
  */
-public class MessageProcesser {
+public class MessageProcessor {
 
     public static final String compatPattern = "(" + Constants.FINAL_COMPAT_PREFIX + ")(\\d\\d)_(\\d\\d)";
 
     public static void process(@NotNull final TelegramBot bot, @NotNull final Message message) {
         final String text = message.text();
-        if (text.equals("/help")) {
-            Help.doOnHelp(bot, message);
-        } else if (text.equals("/start")) {
-            Start.doOnStart(bot, message, true);
+        if (text.equals(Constants.HELP_COMMAND) || text.equals(Constants.START_COMMAND)) {
+            showStartingInfo(bot, message, true);
         } else if (text.startsWith(Constants.LICENCE_PREFIX)) {
             sendLicenceInfo(bot, message);
         } else if (text.startsWith(Constants.COMPATIBILITY_PREFIX)) {
@@ -48,11 +49,31 @@ public class MessageProcesser {
         }
     }
 
+    public static void showStartingInfo(@NotNull final TelegramBot bot,
+                                        @NotNull final Message message,
+                                        final boolean newMessage) {
+        final InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("Get licences info").callbackData(Constants.GET_LICENCES_INFO)
+                });
+        if (newMessage) {
+            bot.execute(new SendMessage(message.chat().id(), StringUtils.getStartInfo())
+                    .parseMode(ParseMode.HTML)
+                    .replyMarkup(inlineKeyboard));
+        } else {
+            bot.execute(new EditMessageText(message.chat().id(), message.messageId(), StringUtils.getStartInfo())
+                    .parseMode(ParseMode.HTML)
+                    .disableWebPagePreview(true)
+                    .replyMarkup(inlineKeyboard));
+        }
+
+    }
+
     private static void showInfo(@NotNull final TelegramBot bot,
                                  @NotNull final Message message,
                                  @NotNull final InfoGroup infoGroup) {
         bot.execute(new SendMessage(message.chat().id(), StringUtils.getInfosByGroup(infoGroup))
-                .parseMode(ParseMode.Markdown)
+                .parseMode(ParseMode.HTML)
                 .disableWebPagePreview(true)
                 .disableNotification(true));
     }
@@ -85,7 +106,7 @@ public class MessageProcesser {
                     + "\"\n\n" + StringUtils.getListOfLicences(Constants.LICENCE_PREFIX, selectedLicenceRelations);
         }
         final SendMessage newRequest = new SendMessage(message.chat().id(), text)
-                .parseMode(ParseMode.Markdown)
+                .parseMode(ParseMode.HTML)
                 .disableWebPagePreview(true)
                 .disableNotification(true);
         bot.execute(newRequest);
@@ -119,7 +140,7 @@ public class MessageProcesser {
             }
         });
         final SendMessage newRequest = new SendMessage(message.chat().id(), text)
-                .parseMode(ParseMode.Markdown)
+                .parseMode(ParseMode.HTML)
                 .disableWebPagePreview(true)
                 .disableNotification(true);
         bot.execute(newRequest);
@@ -135,7 +156,7 @@ public class MessageProcesser {
             }
         });
         final SendMessage newRequest = new SendMessage(message.chat().id(), text)
-                .parseMode(ParseMode.Markdown)
+                .parseMode(ParseMode.HTML)
                 .disableWebPagePreview(true)
                 .disableNotification(true);
         bot.execute(newRequest);

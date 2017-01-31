@@ -7,7 +7,7 @@ import com.pengrad.telegrambot.model.CallbackQuery;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 import info.kurtov.licencesbot.processors.CallbackQueryProcessor;
-import info.kurtov.licencesbot.processors.MessageProcesser;
+import info.kurtov.licencesbot.processors.MessageProcessor;
 import info.kurtov.licencesbot.utils.DataProvider;
 import info.kurtov.licencesbot.utils.LogUtils;
 
@@ -30,7 +30,7 @@ public class Application {
                     final CallbackQuery callbackQuery = update.callbackQuery();
                     if (message != null && !message.text().isEmpty()) {
                         LogUtils.logMessage(message);
-                        MessageProcesser.process(bot, message);
+                        MessageProcessor.process(bot, message);
                     } else if (callbackQuery != null) {
                         LogUtils.logCallbackQuery(callbackQuery);
                         CallbackQueryProcessor.process(bot, callbackQuery);

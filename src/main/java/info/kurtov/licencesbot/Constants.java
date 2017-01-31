@@ -10,6 +10,7 @@ public class Constants {
     public static final String LICENCE_PREFIX = "/L_";
     public static final String FINAL_COMPAT_PREFIX = "/CC_";
     public static final String GET_LICENCES_INFO = "GET_LICENCES_INFO";
-    public static final String GET_MORE_ABOUT = "GET_MORE_ABOUT";
+    public static final String HELP_COMMAND = "/help";
+    public static final String START_COMMAND = "/start";
 
 }
