@@ -14,14 +14,14 @@ public enum InfoGroup {
     @SerializedName("Condition")
     CONDITION("Conditions", "Conditions that should be met to use license"),
     @SerializedName("Limitation")
-    LIMITATION("Limitation", null);
+    LIMITATION("Limitation", "Limitation of license use");
 
     @NotNull
     private final String title;
     @Nullable
     private final String description;
 
-    InfoGroup(@NotNull final String title, @Nullable final String description) {
+    InfoGroup(@NotNull final String title, @NotNull final String description) {
         this.title = title;
         this.description = description;
     }
@@ -31,7 +31,7 @@ public enum InfoGroup {
         return title;
     }
 
-    @Nullable
+    @NotNull
     public String getDescription() {
         return description;
     }

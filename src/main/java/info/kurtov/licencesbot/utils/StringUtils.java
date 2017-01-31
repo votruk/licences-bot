@@ -17,9 +17,7 @@ public class StringUtils {
 
     @NotNull
     public static String getInfosByGroup(@NotNull final InfoGroup infoGroup) {
-        String text = infoGroup.getTitle()
-                + (infoGroup.getDescription() == null ? "" : " (" + infoGroup.getDescription() + ")")
-                + "\n\n";
+        String text = infoGroup.getTitle() + " (" + infoGroup.getDescription() + ")\n\n";
         for (final Info info : Info.values()) {
             if (info.getGroup() == infoGroup) {
                 text = text + info.getName() + " - " + info.getDescription() + "\n";
@@ -32,8 +30,7 @@ public class StringUtils {
     public static String getInfosGroups() {
         String text = "";
         for (final InfoGroup infoGroup : InfoGroup.values()) {
-            text = text + "/" + infoGroup.getTitle()
-                    + (infoGroup.getDescription() == null ? "" : " - " + infoGroup.getDescription() + ".\n\n");
+            text = text + "/" + infoGroup.getTitle() + " - " + infoGroup.getDescription() + ".\n\n";
         }
         return text;
     }
@@ -86,11 +83,11 @@ public class StringUtils {
         for (final Info info : Info.values()) {
             if (currentGroup == null) {
                 currentGroup = info.getGroup();
-                text = text + currentGroup.getTitle() + "\n";
+                text = text + "/" + currentGroup.getTitle() + "\n";
             } else if (currentGroup != info.getGroup()) {
                 text = text + "\n";
                 currentGroup = info.getGroup();
-                text = text + currentGroup.getTitle() + "\n";
+                text = text + "/" + currentGroup.getTitle() + "\n";
 
             }
             text = text + info.getName() + ": " + licenceInfo.getFields().get(info).name() + "\n";
