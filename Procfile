@@ -1,1 +1,0 @@
-web: java -jar lawbot-0.10.jar -Xmms:256m
