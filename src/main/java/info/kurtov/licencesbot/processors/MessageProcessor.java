@@ -2,17 +2,20 @@ package info.kurtov.licencesbot.processors;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ParseMode;
+import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.sun.istack.internal.NotNull;
 import info.kurtov.licencesbot.Constants;
+import info.kurtov.licencesbot.Func1;
 import info.kurtov.licencesbot.models.InfoGroup;
 import info.kurtov.licencesbot.models.Licence;
 import info.kurtov.licencesbot.models.LicenceRelation;
 import info.kurtov.licencesbot.models.Relation;
 import info.kurtov.licencesbot.utils.DataProvider;
 import info.kurtov.licencesbot.utils.StringUtils;
-import rx.functions.Func1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +24,14 @@ import java.util.Locale;
 /**
  * Created by kurt on 31/01/2017.
  */
-public class MessageProcesser {
+public class MessageProcessor {
 
     public static final String compatPattern = "(" + Constants.FINAL_COMPAT_PREFIX + ")(\\d\\d)_(\\d\\d)";
 
     public static void process(@NotNull final TelegramBot bot, @NotNull final Message message) {
         final String text = message.text();
-        if (text.equals("/help")) {
-            Help.doOnHelp(bot, message);
-        } else if (text.equals("/start")) {
-            Start.doOnStart(bot, message, true);
+        if (text.equals(Constants.HELP_COMMAND) || text.equals(Constants.START_COMMAND)) {
+            showStartingInfo(bot, message, true);
         } else if (text.startsWith(Constants.LICENCE_PREFIX)) {
             sendLicenceInfo(bot, message);
         } else if (text.startsWith(Constants.COMPATIBILITY_PREFIX)) {
@@ -46,6 +47,26 @@ public class MessageProcesser {
         } else {
             searchForLicence(bot, message);
         }
+    }
+
+    public static void showStartingInfo(@NotNull final TelegramBot bot,
+                                        @NotNull final Message message,
+                                        final boolean newMessage) {
+        final InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("Get licences info").callbackData(Constants.GET_LICENCES_INFO)
+                });
+        if (newMessage) {
+            bot.execute(new SendMessage(message.chat().id(), StringUtils.getStartInfo())
+                    .parseMode(ParseMode.HTML)
+                    .replyMarkup(inlineKeyboard));
+        } else {
+            bot.execute(new EditMessageText(message.chat().id(), message.messageId(), StringUtils.getStartInfo())
+                    .parseMode(ParseMode.HTML)
+                    .disableWebPagePreview(true)
+                    .replyMarkup(inlineKeyboard));
+        }
+
     }
 
     private static void showInfo(@NotNull final TelegramBot bot,
@@ -104,7 +125,7 @@ public class MessageProcesser {
                 + "\" compatible with licence \"" + secondLicence.getName() + "\"?\n\n"
                 + relation.name();
         bot.execute(new SendMessage(message.chat().id(), sendingText)
-                .parseMode(ParseMode.HTML)
+                .parseMode(ParseMode.Markdown)
                 .disableWebPagePreview(true)
                 .disableNotification(true));
     }

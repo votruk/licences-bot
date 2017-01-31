@@ -30,21 +30,8 @@ public class CallbackQueryProcessor {
                     .disableWebPagePreview(true)
                     .replyMarkup(inlineKeyboard);
             bot.execute(editMessageText);
-        } else if (callbackQuery.data().equals(Constants.GET_MORE_ABOUT)) {
-            final InlineKeyboardMarkup inlineKeyboard = new InlineKeyboardMarkup(
-                    new InlineKeyboardButton[]{
-                            new InlineKeyboardButton("Back to start").callbackData(Constants.BACK_TO_START)
-                    });
-            final EditMessageText editMessageText = new EditMessageText(callbackQuery.message().chat().id(),
-                    callbackQuery.message().messageId(), "There are three main groups:\n\n"
-                    + StringUtils.getInfosGroups())
-                    .parseMode(ParseMode.HTML)
-                    .disableWebPagePreview(true)
-                    .replyMarkup(inlineKeyboard);
-            bot.execute(editMessageText);
-
         } else if (callbackQuery.data().equals(Constants.BACK_TO_START)) {
-            Start.doOnStart(bot, callbackQuery.message(), false);
+            MessageProcessor.showStartingInfo(bot, callbackQuery.message(), false);
         }
     }
 
